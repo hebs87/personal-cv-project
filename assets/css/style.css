@@ -1,0 +1,149 @@
+/* specify imported font in stylesheet rather than html page, as this means you can link it to several pages by linking just the stylesheet */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
+/* numbers specify font weights; can add additional fonts using | as above */
+
+/*-------------------------------------------------------------------Colours*/
+
+.bg-color-name-title {
+    background-color: #676767;
+}
+
+.ul-menu-color-home {
+    background-color: #e67e22;
+}
+
+.ul-menu-color-cv {
+    background-color: #9b59b6;
+}
+
+.ul-menu-color-contact {
+    background-color: #3498db;
+}
+
+.ul-menu-color-download {
+    background-color: #525252;
+}
+
+/*---------------------------------------------Special Paddings/Margins/Text*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.general-sub {
+    font-family: "Exo", sans-serif;
+    font-weight: 300;
+    color: #fafafa;
+}
+
+/*-------------------------------------------------------------------Heading*/
+
+header {
+    margin: 0;
+}
+
+.heading {
+    margin-left: 50px;
+}
+
+.logo {
+    /* this sets the background image as the saved image, and again, specifying it here enables us to link it to multiple sheets by referencing the sheet */
+    background: url("../images/sunny.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 360px;
+    /* the below ensures it will ease in while page or image is loading */
+    transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+}
+
+.name {
+    font-family: "Exo", sans-serif;
+    font-weight: 100;
+    font-size: 46px;
+    margin-top: 50px;
+    color: #ffffff;
+}
+
+.title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 200;
+    font-size: 28px;
+    margin-top: 20px;
+    margin-bottom: 90px;
+    color: #ffffff;
+}
+
+#nav {
+    margin: 0;
+}
+
+#nav li {
+    padding: 0;
+}
+
+.menu-item {
+    height: 120px;
+    text-align: center;
+    padding: 0;
+}
+
+/* targets the anchor tags to make the entire area clickable */
+
+.menu-item a {
+    width: 100%;
+    text-decoration: none;
+    color: #ffffff;
+    height: 120px;
+}
+
+/* targets the font awesome icons; setting display: block; ensures it takes up the full line - text pushed down to next line */
+
+.menu-item a i {
+    padding-top: 22px;
+    display: block;
+    color: #fafafa;
+    font-size: 26px;
+}
+
+.menu-item span {
+    display: block;
+    width: 100%;
+    padding-top: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+/*---------------------------------------------------------------------Hover*/
+
+/* to change the overlap colour */
+
+.hvr-sweep-to-bottom:before {
+    background: rgba(0, 0, 0, 0.2);
+    /* the number at the end sets the transparency */
+    height: 120px;
+}
+
+/*--------------------------------------------------------------------Footer*/
+
+footer {
+    background-color: #525252;
+    color: #fafafa;
+    min-height: 120px;
+    margin: 0;
+}
