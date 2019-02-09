@@ -5,8 +5,16 @@
 
 /*-------------------------------------------------------------------Colours*/
 
+body {
+    background-color: #676767;
+}
+
 .bg-color-name-title {
     background-color: #676767;
+}
+
+.bg-color-three-reasons {
+    background-color: #ffffff;
 }
 
 .ul-menu-color-home {
@@ -49,6 +57,26 @@ h6 {
 .inline-block {
     display: inline-block;
 }
+
+/* setting the .row-table as table and setting the child elements as table-cell allows us to get columns of fixed height, regardless of their content */
+.row-table {
+    display: table;
+}
+
+.section-column {
+    padding: 0 30px 30px;
+    float: none;
+    display: table-cell;
+}
+
+.section-heading {
+    font-family: "Exo" sans-serif;
+    font-weight: 300;
+    margin-top: 25px;
+    margin-bottom: 40px;
+}
+
+
 
 /*-------------------------------------------------------------------Heading*/
 
