@@ -53,20 +53,33 @@
 
     <!--section different on each page-->
     <section>
-
+        
     </section>
 
     <!--footer same across each page-->
     <footer class="container-fluid">
-        <div class="row">
+        <div id="footer-details" class="row">
             <div class="col-sm-4">
                 <h5 class="uppercase general-sub">About</h5>
+                <p class="inline-block">
+                    Full Stack Web Developer. Skilled in everything from HTML to Heroku. The capacity for structural and design thinking.
+                </p>
             </div>
             <div class="col-sm-4">
                 <h5 class="uppercase general-sub">Download My CV</h5>
+                <p class="inline-block">
+                    Need a printable version of my CV? Download it here.
+                    <a href="#" class="cv-pdf"><i class="fa fa-download" aria-hidden="true"></i></a>
+                </p>
             </div>
             <div class="col-sm-4">
                 <h5 class="uppercase general-sub">My Social</h5>
+                <ul class="list-inline social-links">
+                    <!--having an a tag with target="_blank" enables the link to open in a new browser tab-->
+                    <li><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
+                </ul>
             </div>
         </div>
     </footer>
