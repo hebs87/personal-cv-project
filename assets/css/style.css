@@ -234,6 +234,7 @@ footer .cv-pdf i:hover {
 }
 
 .three-reasons-heading {
+    margin-top:2px;
     margin-bottom: 15px;
 }
 
@@ -302,6 +303,10 @@ footer .cv-pdf i:hover {
     position: relative;
     color: #fafafa;
     border-left: 1px solid;
+}
+
+.timeline-item .timeline-heading {
+    margin:0;
 }
 
 .timeline-item p {
