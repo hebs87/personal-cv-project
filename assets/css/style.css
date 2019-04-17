@@ -38,7 +38,15 @@
 }
 
 .ul-menu-color-download {
-    background-color: #525252;
+    background-color: #d9a81d;
+}
+
+.ul-menu-color-github {
+    background-color: #1c4a6c;
+}
+
+.ul-menu-color-interests {
+    background-color: #e74c3c;
 }
 
 /*---------------------------------------------Special Paddings/Margins/Text*/

@@ -163,9 +163,9 @@ img {
 #gh-username {
   display: block;
   padding: 5px 8px;
-  font-size: 1.4em;
+  /*font-size: 1.4em;*/
   color: #666;
-  max-width: 550px;
+  /*max-width: 550px;*/
   margin-bottom: 15px;
 }
 
