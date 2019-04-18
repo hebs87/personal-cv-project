@@ -166,35 +166,14 @@
         </div>
     </footer>
 
-    
-    <script>
-    
-        //Maps JavaScript API key
-        //This can be removed once we have pasted the relevant script tags for the API and pasted our API key into it
-        //var APIKey = AIzaSyAOZ89GqQRsSWfEENTddiSDnxUpQ-ne9Uo;
-        
-        //FUNCTION TO INVOKE initMap PARAMETER AND RENDER MAP
-        function initMap() {
-            //create new map object - google.maps.Map() is a map object that is provided by Google Maps API
-            //then we use the document.getElementByID() method to to retrieve the div with the ID of "map", which is where our map will be rendered
-            var map = new google.maps.Map(document.getElementById("map"), {
-                //zoom parameter determines the initial zoom of the map
-                zoom: 3,
-                //then set our coordinates
-                center: {
-                    lat: 46.619261,
-                    lng: -33.134766
-                }
-            });
-        }
-        
-    </script>
     <!--Here we are getting the markerclusterer.js file-->
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <!--Here we are getting the actual Google Maps API file - we need to paste our API key where it says "YOUR_API_KEY"-->
     <!--async - loads script while HTML is loading and brief pause before executed; defer - defers loading until HTML is loaded but only relevant if script tags are in <head>-->
     <!--initMap is a callback parameter which will be invoked with a initMap() function in our JS file-->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOZ89GqQRsSWfEENTddiSDnxUpQ-ne9Uo&callback=initMap"></script>
+    <!--Add script tags to link to our js file-->
+    <script type="text/javascript" src="assets/js/maps.js"></script>
 
 </body>
     
