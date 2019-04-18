@@ -25,9 +25,37 @@ function userinformationHTML(user) {
                 Followers: ${user.followers} - Following: ${user.following} <br/>
                 Repos: ${user.public_repos}
             </p>
-        </div>`
+        </div>`;
 }
 
+//THIS IS WRITTEN AFTER THE fetchGitHubInformation() FUNCTION, BUT IS WRITTEN ABOVE IT AND IS CALLED WHEN OUR PROMISE RESOLVES
+function repoinformationHTML(repos) {
+    //git returns this as an array, so we can use a standard array method in the function, which is length, to see if it's === 0
+    if (repos.length == 0) {
+        return `<div class="clearfix repo-list">No Repos!</div>`
+    }
+    //if data HAS been returned, since it's an array, we want to iterate through it and get the info out
+    //create a var called listItemsHTML and it takes the results of our map method (like we did with the maps API)
+    var listItemsHTML = repos.map(function(repo) {
+        //${repo.html_url} is the actual repository - will take us to it when the text is clicked
+        //${repo.name} is the name of the respository - this will be the text for the anchor tag
+        //${listItemsHTM.join("\n")} uses the join() method on the array items and joins everything on a new line - stops us from having to iterate through array again
+        return `
+            <li>
+                <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+            </li>`;
+    });
+    
+    return `
+        <div class="clearfix repo-list">
+            <p>
+                <strong>Repo List:</strong>
+            </p>
+            <ul>
+                ${listItemsHTML.join("\n")}
+            </ul>
+        </div>`;
+}
 
 //Create fetchGitHubInformation() function that will be called in our html file
 function fetchGitHubInformation(event) {
@@ -50,14 +78,22 @@ function fetchGitHubInformation(event) {
     //.then(//run a function to display it in the #gh-user-data div, unless we get an error)
     $.when(
         //${username} means we get the value of the username when we acces our GitHub API
-        $.getJSON(`https://api.github.com/users/${username}`)
+        $.getJSON(`https://api.github.com/users/${username}`),
+        //the first JSON gets the username info; the second JSON gets the repo info for that username
+        $.getJSON(`https://api.github.com/users/${username}/repos`)
         ).then(
-            //response that came back from our getJSON() method...
-            function(response) {
-                //...will be stored in a var
-                var userData = response;
+            //response that came back from our getJSON() method - need one for the first response and another for the second response...
+            function(firstResponse, secondResponse) {
+                //...first response will be stored in userData var
+                //when we do two calls, the when() method packs response into arrays, and each one is the first element of the array, so we need the index
+                var userData = firstResponse[0];
+                //...second response will be stored in repoData var
+                var repoData = secondResponse[0];
+                
                 //set the html of the div to userinformationHTML(userData), which is a function we will write later
                 $("#gh-user-data").html(userinformationHTML(userData));
+                //set the html of the div to repoinformationHTML(repoData), which is a function we will write later
+                $("#gh-repo-data").html(repoinformationHTML(repoData));
             }, function(errorResponse) {
                 //if there is an error (status 404) then we want an error response - get our div and set its HTML to an error message
                 if (errorResponse.status === 404) {
