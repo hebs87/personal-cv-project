@@ -17,11 +17,23 @@
     background-color: #f4f4f4;
 }
 
+.bg-color-skills {
+    background-color: #ffffff;
+}
+
 .bg-color-work-history {
     background-color: #9b59b6;
 }
 
 .bg-color-contact {
+    background-color: #ffffff;
+}
+
+.bg-color-conferences {
+    background-color: #f4f4f4;
+}
+
+.bg-color-groups {
     background-color: #ffffff;
 }
 
@@ -49,6 +61,13 @@
     background-color: #e74c3c;
 }
 
+body {
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+    background-color: #525252;
+    color: #555555;
+}
+
 /*---------------------------------------------Special Paddings/Margins/Text*/
 
 h1,
@@ -57,7 +76,7 @@ h3,
 h4,
 h5,
 h6 {
-    padding: 0;
+    margin: 0;
 }
 
 .uppercase {
@@ -313,10 +332,6 @@ footer .cv-pdf i:hover {
     border-left: 1px solid;
 }
 
-.timeline-item .timeline-heading {
-    margin:0;
-}
-
 .timeline-item p {
     padding: 0;
     margin: 0;
@@ -377,6 +392,12 @@ button[type="submit"] {
     margin-bottom: 20px;
     background-color: #e84610;
     color: #fafafa;
+}
+
+/*-----------------------------------------------------------------Map*/
+
+#map {
+    min-height: 360px;
 }
 
 /*------------------------------------------------------------Media Queries*/
