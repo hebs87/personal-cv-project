@@ -1,0 +1,74 @@
+//THIS IS WRITTEN AFTER THE fetchGitHubInformation() FUNCTION, BUT IS WRITTEN ABOVE IT AND IS CALLED WHEN OUR PROMISE RESOLVES
+//user parameter is the object that is being returned from the API
+function userinformationHTML(user) {
+    //${user.name} returns the user's public username
+    //(@) puts an @ before the user's login name and encapsulates it all in brackets
+    //${user.html_url} links to the user's public GitHub profile
+    //${user.login} will be the user's login name which will be the text inside our anchor tag
+    //.gh-content will be where content about the user will appear
+    //.gh-avatar will be where the user's avatar appears - ${user.avatar_url} - this will be displayed as an image in an anchor so will link to their GitHub profile
+    //${user.followers} - count of no of people that follow the user; ${user.following} - count of no of people that the user is following
+    //${user.public_repos} count of public repos the user has
+    return `
+        <h2>${user.name}
+            <span class="small-name">
+                (@<a href="${user.html_url}" target="_blank">${user.login}</a>)
+            </span>
+        </h2>
+        <div class="gh-content">
+            <div class="gh-avatar">
+                <a href="${user.html_url}" target="_blank">
+                    <img src="${user.avatar_url}" width="80" height="80" alt="${user.login}" />
+                </a>
+            </div>
+            <p>
+                Followers: ${user.followers} - Following: ${user.following} <br/>
+                Repos: ${user.public_repos}
+            </p>
+        </div>`
+}
+
+
+//Create fetchGitHubInformation() function that will be called in our html file
+function fetchGitHubInformation(event) {
+    //create var that holds the username - use jquery to target the div with id of gh-username and gets the value in that text field
+    var username = $("#gh-username").val();
+    //if statement
+    if (!username) {
+        //if username is empty, the #gh-user-data div will display the text and return out of that function as we don't want to display any data
+        $("#gh-user-data").html(`<h2>Please enter a GitHub username</h2>`);
+        return;
+    }
+    //if text has been input then we want to display a loader - this will loop while data is being accessed
+    $("#gh-user-data").html(
+        `<div id="loader" class="text-center">
+            <img src="assets/css/loader.gif" alt="loading..." />
+        </div>`);
+    
+    //now we input our jQuery promise
+    //.when(//we have a response from the GitHub API (https://api.github.com/users/))
+    //.then(//run a function to display it in the #gh-user-data div, unless we get an error)
+    $.when(
+        //${username} means we get the value of the username when we acces our GitHub API
+        $.getJSON(`https://api.github.com/users/${username}`)
+        ).then(
+            //response that came back from our getJSON() method...
+            function(response) {
+                //...will be stored in a var
+                var userData = response;
+                //set the html of the div to userinformationHTML(userData), which is a function we will write later
+                $("#gh-user-data").html(userinformationHTML(userData));
+            }, function(errorResponse) {
+                //if there is an error (status 404) then we want an error response - get our div and set its HTML to an error message
+                if (errorResponse.status === 404) {
+                    $("#gh-user-data").html(`<h2>No info found for user ${username}</h2>`);
+                } else {
+                    //if it isn't a 404 error, then we'll console.log our errorResponse and we'll set our div HTML value to the JSON response that we got back
+                    console.log(errorResponse);
+                    $("#gh-user-data").html(
+                        `<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
+                }
+            });
+            
+
+}
