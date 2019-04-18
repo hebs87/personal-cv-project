@@ -102,6 +102,19 @@ function fetchGitHubInformation(event) {
                 //if there is an error (status 404) then we want an error response - get our div and set its HTML to an error message
                 if (errorResponse.status === 404) {
                     $("#gh-user-data").html(`<h2>No info found for user ${username}</h2>`);
+                } 
+                //API THROTTLING *******FINAL STEP******* TO DISPLAY FRIENDLIER ERROR MESSAGE WHEN REQUEST LIMIT IS EXCEEDED (ELSE IF STATEMENT)
+                //403 is a 'forbidden' status, which is what we get when API request limit is exceeded
+                else if (errorResponse.status === 403) {
+                    //create variable called resetTime and set it to be a new date object
+                    //the error we want to retrieve is inside our errorResponse, inside the header
+                    //the particular header that we want to target is the X-RateLimit-Reset header...
+                    //...provided by github to helpfully let us know when our quota will be reset and when we can start using the API again
+                    //this is displayed as UNIX time stamp, so to get it into a readable format, we need to multiply by 1000 and turn into date object
+                    var resetTime = new Date(errorResponse.getResponseHeader('X-RateLimit-Reset')*1000);
+                    //set the content of the div...
+                    //${resetTime.toLocaleTimeString()}</h4> - picks up the browser location and displays the resetTime in the local time
+                    $("#gh-user-data").html(`<h4>Too many requests, please wait until ${resetTime.toLocaleTimeString()}</h4>`);
                 } else {
                     //if it isn't a 404 error, then we'll console.log our errorResponse and we'll set our div HTML value to the JSON response that we got back
                     console.log(errorResponse);
@@ -109,7 +122,6 @@ function fetchGitHubInformation(event) {
                         `<h2>Error: ${errorResponse.responseJSON.message}</h2>`);
                 }
             });
-            
 }
 
 //this fetches the info when the page is fully loaded, so it displays the info for the default username that is in the field when the page loads
