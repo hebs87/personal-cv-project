@@ -59,6 +59,10 @@ function repoinformationHTML(repos) {
 
 //Create fetchGitHubInformation() function that will be called in our html file
 function fetchGitHubInformation(event) {
+    //sets the div content to an empty string, which clears any info when the input text is deleted from the box, so data doesn't remain
+    $("#gh-user-data").html("");
+    $("#gh-repo-data").html("");
+    
     //create var that holds the username - use jquery to target the div with id of gh-username and gets the value in that text field
     var username = $("#gh-username").val();
     //if statement
@@ -106,5 +110,7 @@ function fetchGitHubInformation(event) {
                 }
             });
             
-
 }
+
+//this fetches the info when the page is fully loaded, so it displays the info for the default username that is in the field when the page loads
+$(document).ready(fetchGitHubInformation);
