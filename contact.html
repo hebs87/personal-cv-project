@@ -10,6 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <title>Sunny's CV | Contact</title>
+    
+    <!--EmailJS script tags-->
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_RytAeec1dPUM0md1700rx");
+            //copy and paste emailjs.send and amend the details (below) - can remove once we have tested it
+            //emailjs.send('gmail', 'sunny', {name: 'Sunny', notes: 'The project that I want is...'});
+        })();
+    </script>
 </head>
 
 <body>
@@ -64,7 +74,8 @@
                 <h5 class="contact-sub-heading uppercase text-center">Let's work together</h5>
             </div>
             <div class="center-form">
-                <form>
+                <!--Update form tag so when form is submitted, we invoke function to send the email, which will be in the script file-->
+                <form onsubmit="return sendMail(this);" method="POST">
                     <input type="text" name="name" class="form-control" id="fullname" placeholder="Full Name" required/>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Email" required/>
                     <textarea rows="5" name="projectsummary" class="form-control" id="project-summary" placeholder="Project Description..." required></textarea>
@@ -87,7 +98,7 @@
                 <h5 class="uppercase general-sub">Download My CV</h5>
                 <p class="inline-block">
                     Need a printable version of my CV? Download it here.
-                    <a target= "_blank" href="assets/cv/sunny-hebbar-cv.pdf" class="cv-pdf"><i class="fa fa-download" aria-hidden="true"></i></a>
+                    <a target="_blank" href="assets/cv/sunny-hebbar-cv.pdf" class="cv-pdf"><i class="fa fa-download" aria-hidden="true"></i></a>
                 </p>
             </div>
             <div class="col-sm-4">
@@ -101,6 +112,8 @@
             </div>
         </div>
     </footer>
+
+    <script type="text/javascript" src="assets/js/sendEmail.js"></script>
 
 </body>
 

@@ -32,7 +32,7 @@ function userinformationHTML(user) {
 function repoinformationHTML(repos) {
     //git returns this as an array, so we can use a standard array method in the function, which is length, to see if it's === 0
     if (repos.length == 0) {
-        return `<div class="clearfix repo-list">No Repos!</div>`
+        return `<div class="text-center clearfix repo-list">No Repos!</div>`
     }
     //if data HAS been returned, since it's an array, we want to iterate through it and get the info out
     //create a var called listItemsHTML and it takes the results of our map method (like we did with the maps API)
@@ -47,7 +47,7 @@ function repoinformationHTML(repos) {
     });
     
     return `
-        <div class="clearfix repo-list">
+        <div class="text-center clearfix repo-list">
             <p>
                 <strong>Repo List:</strong>
             </p>
